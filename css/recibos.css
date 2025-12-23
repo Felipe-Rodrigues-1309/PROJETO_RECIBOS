@@ -48,7 +48,7 @@
     margin-right: auto; /* melhor forme de centralizar qualquer coisa*/
     background-color: black;
     width: 90%;
-    border: solid 4px blueviolet;
+    border: solid 4px #0ed30e;
     border-radius: 10px;
     border-width: 10px;
     border-style: ridge;
