@@ -4,7 +4,7 @@
 // ===============================
 $host = "127.0.0.1";
 $usuario = "root";
-$senha = "";
+$senha = "52461309";
 $banco = "recibos";
 
 $conn = new mysqli($host, $usuario, $senha, $banco);
