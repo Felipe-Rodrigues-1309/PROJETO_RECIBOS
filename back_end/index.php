@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 // ===============================
-// RECEBER DADOS DO FORMULÁRIO
+// RECEBER DADOS DO FORMULÁRIO~~~~~
 // ===============================
 $nome = $_POST['nome'] ?? '';
 
