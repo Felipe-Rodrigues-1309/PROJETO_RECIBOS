@@ -55,7 +55,7 @@
 }
 
 body{
-    background-image: url(/img/3395620.jpg);
+    background-image: url(/img/Fundo\ de\ tela.png);
     padding-top: 15px;
 }
 
@@ -160,6 +160,30 @@ input{
     border: solid 2px blueviolet;
     font-size: large;
 }
+
+
+select{
+    padding: 2px;
+    margin-bottom: 1px;
+    border-radius: 5px;
+    border: solid 2px blueviolet;
+    font-size: large;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url('img/seta.png'); /* opcional */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  cursor: pointer;
+}
+
+
+
 
 input:focus{
     background-color: blueviolet;

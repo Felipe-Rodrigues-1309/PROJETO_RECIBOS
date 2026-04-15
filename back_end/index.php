@@ -4,7 +4,7 @@
 // ===============================
 $host = "127.0.0.1";
 $usuario = "root";
-$senha = "";
+$senha = "52461309";
 $banco = "recibos";
 
 $conn = new mysqli($host, $usuario, $senha, $banco);
@@ -47,7 +47,7 @@ if (empty($nome)) {
 // ===============================
 // INSERÇÃO NO BANCO
 // ===============================
-$sql = "INSERT INTO cadastro (nome) VALUES (?)";
+$sql = "INSERT INTO funcionario (nome) VALUES (?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $nome);
 
@@ -77,7 +77,7 @@ if ($stmt->execute()) {
                 timer: 5000,
                 timerProgressBar: true
             }).then(() => {
-                window.location.href = 'http://localhost/PROJETO_RECIBOS/index.html';
+                window.location.href = 'http://localhost:8000/index.php?action=login';
             });
         </script>
     </body>

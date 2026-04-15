@@ -1,3 +1,22 @@
+<?php
+$host = "127.0.0.1";
+$usuario = "root";
+$senha = "52461309";
+$banco = "recibos";
+
+$conn = new mysqli($host, $usuario, $senha, $banco);
+
+// Verificar conexão
+if ($conn->connect_error) {
+    die("Erro de conexão: " . $conn->connect_error);
+}
+
+$nomes = $conn->query("SELECT * FROM funcionario ORDER BY nome ASC ");
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -43,7 +62,18 @@
 
       <div id="inputsArea">
         <div class="InputsRecibos1 inputGroup">
-          <input type="text" class="nome" placeholder="Nome" />
+          
+          <select class="nome" name="nome">
+            <option value="">
+              Selecione O Funcionário
+            </option>
+            <?php while ($row = $nomes->fetch_assoc()):?>
+              <option value="<?=$row['nome'] ?>">
+                <?=$row['nome']?>
+              </option>
+            <?php endwhile; ?>
+          </select>
+
           <input type="text" class="valor" placeholder="Valor" />
           <input type="text" class="referente" placeholder="Referente á" />
           <input type="date" class="data" />
