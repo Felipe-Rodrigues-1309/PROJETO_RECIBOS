@@ -32,11 +32,11 @@ $usuario = $result->fetch_assoc();
 if ($usuario && password_verify($senha, $usuario['senha'])) {
 
     // cria sessão
-    $_SESSION['id'] = $usuario['id'];
+    $_SESSION['id'] = $id['id'];
     $_SESSION['nome'] = $usuario['nome'];
 
     // redireciona
-    header("Location: http://localhost:8000/index.php?action=login");
+    header("Location: http://localhost:8000/index.php");
     exit();
 
 } else {

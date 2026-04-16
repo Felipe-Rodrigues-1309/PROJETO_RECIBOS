@@ -1,5 +1,12 @@
 <?php
-$host = "localhost";
+
+// mostra log de erros 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// conecta com o banco
+$host = "127.0.0.1";
 $usuario = "root";
 $senha = "52461309";
 $banco = "recibos";
@@ -11,7 +18,7 @@ if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
 
-$nomes = $conn->query("SELECT * FROM funcionario ORDER BY nome ASC ");
+$nomes = $conn->query("SELECT * FROM funcionarios ORDER BY nome ASC ");
 
 ?>
 
@@ -119,5 +126,47 @@ $nomes = $conn->query("SELECT * FROM funcionario ORDER BY nome ASC ");
         </div>
       </div>
     </form>
+
+<!--proximo input ao apertar enter-->
+
+<script>
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    const campo = e.target;
+
+    // só funciona em inputs e selects
+    if (!campo.matches("input, select")) return;
+
+    e.preventDefault();
+
+    // se for campo de data
+    if (campo.classList.contains("data")) {
+      adicionarInputEntradas_novo();
+
+      // foca no novo grupo
+      setTimeout(() => {
+        const grupos = document.querySelectorAll(".inputGroup");
+        const ultimoGrupo = grupos[grupos.length - 1];
+        const primeiroCampo = ultimoGrupo.querySelector("select, input");
+
+        if (primeiroCampo) {
+          primeiroCampo.focus();
+        }
+      }, 100);
+
+    } else {
+      // pega todos os campos visíveis
+      const campos = Array.from(document.querySelectorAll("input, select"));
+      const index = campos.indexOf(campo);
+      const proximo = campos[index + 1];
+
+      if (proximo) {
+        proximo.focus();
+      }
+    }
+  }
+});
+</script>
+
   </body>
 </html>

@@ -1,4 +1,10 @@
 <?php
+
+// MOSTRA LOG DE ERROS
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // ===============================
 // CONEXÃO COM O BANCO
 // ===============================
@@ -47,7 +53,7 @@ if (empty($nome)) {
 // ===============================
 // INSERÇÃO NO BANCO
 // ===============================
-$sql = "INSERT INTO funcionario (nome) VALUES (?)";
+$sql = "INSERT INTO funcionarios (nome) VALUES (?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $nome);
 
