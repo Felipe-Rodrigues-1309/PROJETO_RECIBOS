@@ -1,25 +1,11 @@
 <?php
-
 // MOSTRA LOG DE ERROS
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// ===============================
-// CONEXÃO COM O BANCO
-// ===============================
-$host = "127.0.0.1";
-$usuario = "root";
-$senha = "52461309";
-$banco = "recibos";
 
-$conn = new mysqli($host, $usuario, $senha, $banco);
-
-// Verificar conexão
-if ($conn->connect_error) {
-    die("Erro de conexão: " . $conn->connect_error);
-}
-
+require_once __DIR__ . '/conexao.php';
 // ===============================
 // RECEBER DADOS DO FORMULÁRIO~~~~~
 // ===============================

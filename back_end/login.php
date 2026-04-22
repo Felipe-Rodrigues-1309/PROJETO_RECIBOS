@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 
 session_start();
-require_once __DIR__ . '/../conexao.php';
+require_once __DIR__ . '/conexao.php';
 
 // pega dados do formulario
 $email = trim($_POST['email'] ?? '');

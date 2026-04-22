@@ -1,34 +1,26 @@
 <?php
-
-// mostra log de erros 
+// MOSTRA LOG DE ERROS
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// conecta com o banco
-$host = "127.0.0.1";
-$usuario = "root";
-$senha = "52461309";
-$banco = "recibos";
 
-$conn = new mysqli($host, $usuario, $senha, $banco);
-
-// Verificar conexão
-if ($conn->connect_error) {
-    die("Erro de conexão: " . $conn->connect_error);
-}
+require_once __DIR__ . '/back_end/conexao.php';
 
 $nomes = $conn->query("SELECT * FROM funcionarios ORDER BY nome ASC ");
 
+$funcionario = $conn->query("SELECT * FROM funcionarios ORDER BY nome ASC ");
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/recibos.css" />
     <script src="js/index.js"></script>
     <link
@@ -75,15 +67,14 @@ $nomes = $conn->query("SELECT * FROM funcionarios ORDER BY nome ASC ");
               Selecione O Funcionário
             </option>
             <?php while ($row = $nomes->fetch_assoc()):?>
-              <option value="<?=$row['nome'] ?>">
+              <option value="<?=$row['id'] ?>">
                 <?=$row['nome']?>
               </option>
             <?php endwhile; ?>
           </select>
-
           <input type="text" class="valor" placeholder="Valor" />
-          <input type="text" class="referente" placeholder="Referente á" />
-          <input type="date" class="data" />
+          <input type="text" class="referente" placeholder="Referente á"/>
+          <input type="date" class="data"/>
         </div>
       </div>
     </div>
@@ -123,9 +114,26 @@ $nomes = $conn->query("SELECT * FROM funcionarios ORDER BY nome ASC ");
           <button type="submit" id="botaoSalvar">
             <img src="img/disquete.png" alt="" width="60px" />
           </button>
+    </form>
+            <h3>Editar Funcionários</h3>
+            <ul class="listaEditarFuncionarios">
+              <?php while ($row = $funcionario->fetch_assoc()):?>
+                <li>
+                  <form action="editarFuncionario.php" method="post">
+                    <input type="hidden" name="id" value="<?=$row['id']?>">
+                    <input type="text" name="nome" value="<?=$row['nome']?>"> 
+                    <button type="submit" class="btn-editar"><img src="img/editar.png" width="40px"></button>
+                  </form>
+                  <form action="excluirFuncionario.php" method="post">
+                      <input type="hidden" name="id" value="<?=$row['id']?>">
+                      <button type="submit" class="btn-excluir"><img src="img/excluir.png" width="40px"></button>
+                  </form>
+                </li>
+              <?php endwhile; ?>
+            </ul>
         </div>
       </div>
-    </form>
+
 
 <!--proximo input ao apertar enter-->
 
